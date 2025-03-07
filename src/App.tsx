@@ -1,10 +1,11 @@
 import './App.css';
-import { LottoForm } from './components/LottoForm';
-import { LottoTicket } from './components/LottoTicket';
-import { WinningNumberDisplay } from './components/WinningNumberDisplay';
-import { LottoResult } from './components/LottoResult';
-import { useLottoSet } from './hooks/useLottoSet';
-import { useLottoWinner } from './hooks/useLottoWinner';
+import {
+  LottoForm,
+  LottoTicket,
+  WinningNumberDisplay,
+  LottoResult,
+} from './components';
+import { useLottoSet, useLottoWinner } from './hooks';
 
 export default function App() {
   const { lottoSets, handleGenerate } = useLottoSet();
