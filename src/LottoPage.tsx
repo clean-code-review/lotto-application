@@ -1,4 +1,4 @@
-import './App.css';
+import './LottoPage.css';
 import {
   LottoForm,
   LottoTicket,
@@ -7,7 +7,7 @@ import {
 } from './components';
 import { useLottoSet, useLottoWinner } from './hooks';
 
-export default function App() {
+export default function LottoPage() {
   const { lottoSets, handleGenerate } = useLottoSet();
   const { winningNumbers, handleGenerateWinning } = useLottoWinner();
 
