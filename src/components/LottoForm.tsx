@@ -4,7 +4,7 @@ interface LottoFormProps {
   onGenerate: (count: number) => void;
 }
 
-const LottoForm = ({ onGenerate }: LottoFormProps) => {
+export const LottoForm = ({ onGenerate }: LottoFormProps) => {
   const [count, setCount] = useState(1);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,5 +27,3 @@ const LottoForm = ({ onGenerate }: LottoFormProps) => {
     </form>
   );
 };
-
-export default LottoForm;

@@ -2,7 +2,7 @@ interface LottoTicketProps {
   numbers: number[];
 }
 
-const LottoTicket = ({ numbers }: LottoTicketProps) => {
+export const LottoTicket = ({ numbers }: LottoTicketProps) => {
   return (
     <div className='lotto-ticket'>
       {numbers.map((number, index) => (
@@ -13,5 +13,3 @@ const LottoTicket = ({ numbers }: LottoTicketProps) => {
     </div>
   );
 };
-
-export default LottoTicket;
