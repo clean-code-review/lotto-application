@@ -1,30 +1,14 @@
-import { useState } from 'react';
 import './App.css';
 import { LottoForm } from './components/LottoForm';
 import { LottoTicket } from './components/LottoTicket';
 import { WinningNumberDisplay } from './components/WinningNumberDisplay';
 import { LottoResult } from './components/LottoResult';
-import {
-  generateMultipleLottoNumbers,
-  generateWinningNumbers,
-} from './utils/lottoUtils';
+import { useLottoSet } from './hooks/useLottoSet';
+import { useLottoWinner } from './hooks/useLottoWinner';
 
 export default function App() {
-  const [lottoSets, setLottoSets] = useState<number[][]>([]);
-  const [winningNumbers, setWinningNumbers] = useState<{
-    numbers: number[];
-    bonus: number;
-  } | null>(null);
-
-  const handleGenerate = (count: number) => {
-    const newLottoSets = generateMultipleLottoNumbers(count);
-    setLottoSets(newLottoSets);
-  };
-
-  const handleGenerateWinning = () => {
-    const winning = generateWinningNumbers();
-    setWinningNumbers(winning);
-  };
+  const { lottoSets, handleGenerate } = useLottoSet();
+  const { winningNumbers, handleGenerateWinning } = useLottoWinner();
 
   return (
     <div className='lotto-app'>
