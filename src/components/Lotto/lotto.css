@@ -1,0 +1,14 @@
+.lotto-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.lotto {
+  .lotto-numbers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
