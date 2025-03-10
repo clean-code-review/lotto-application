@@ -1,26 +1,31 @@
 import './App.css'
 import { Heading } from '@hensley-ui/ui'
-import { LottoPurchaseForm } from './components/LottoPurchaseForm'
-import { LottoPurchaseFormOnDetail } from './components/LottoPurchaseFormOnDetail'
 import { useLotteryPurchased } from './hooks/useLotteryPurchased'
+import { Form as LotteryPurchaseForm } from './components/Form'
+import { LotteryTicketList } from './components/LotteryTicketList'
+import { LotteryPanel } from './components/LotteryPanel'
+import { LotteryTicketWinningCheck } from './components/LotteryTicketWinningCheck'
 
 function App() {
-  const { lotteryTickets, handleBuyTicket } = useLotteryPurchased()
-
+  const lottery = useLotteryPurchased()
+  const hasTicket =
+    Array.isArray(lottery.lotteryTickets) && lottery.lotteryTickets?.length > 0
   return (
     <>
-      <header>
-        <Heading as={'h1'}>행운의 로또</Heading>
-      </header>
-      <main>
-        <LottoPurchaseForm
-          label={'구입할 금액을 입력해주세요'}
-          clickSubmitForm={handleBuyTicket}
-        />
-        {lotteryTickets && (
-          <LottoPurchaseFormOnDetail lotteryTickets={lotteryTickets} />
-        )}
-      </main>
+      <Heading as={'h1'}>행운의 로또</Heading>
+      <LotteryPurchaseForm
+        labelText="구입할 금액을 입력해 주세요"
+        labelHtmlFor="amount"
+        inputType="number"
+        placeholder="1000"
+        buttonText="확인"
+        onSubmit={(value: string) => lottery.purchaseTickets(Number(value))}
+        error=" "
+      />
+      <LotteryPanel isVisible={hasTicket}>
+        <LotteryTicketList tickets={lottery.lotteryTickets || []} />
+        <LotteryTicketWinningCheck tickets={lottery.lotteryTickets || []} />
+      </LotteryPanel>
     </>
   )
 }
