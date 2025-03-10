@@ -1,9 +1,14 @@
 export class LotteryRules {
+  static readonly PRICE_PER_TICKET: number = 1000
+  static readonly MIN_NUMBER: number = 1
+  static readonly MAX_NUMBER: number = 45
+  static readonly NUMBERS_PER_TICKET: number = 6
+
   constructor(
-    public readonly pricePerTicket: number = 1000,
-    public readonly minNumber: number = 1,
-    public readonly maxNumber: number = 45,
-    public readonly numbersPerTicket: number = 6,
+    public readonly pricePerTicket: number = LotteryRules.PRICE_PER_TICKET,
+    public readonly minNumber: number = LotteryRules.MIN_NUMBER,
+    public readonly maxNumber: number = LotteryRules.MAX_NUMBER,
+    public readonly numbersPerTicket: number = LotteryRules.NUMBERS_PER_TICKET,
   ) {}
 
   calculateTicketCount(amount: number): number {

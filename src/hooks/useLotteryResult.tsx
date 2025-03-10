@@ -1,14 +1,20 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { LotteryService } from '../domain/lottery/LotteryService'
 import Swal from 'sweetalert2'
+import { NonNullableA } from '../type'
+import { WinningNumbers } from './useWinninNumbersInput'
+
 type LotteryTicket = string
 
 export const useLotteryResult = (tickets: LotteryTicket[]) => {
   const [error, setError] = useState<string | null>(null)
 
-  const lotteryService = new LotteryService()
+  const lotteryService = useMemo(() => new LotteryService(), [])
 
-  const getWinningResult = (winningNumbers: number[], bonusNumber: number) => {
+  const getWinningResult = (
+    winningNumbers: WinningNumbers,
+    bonusNumber: number,
+  ) => {
     try {
       const result = lotteryService.getWinningResult(
         tickets,
@@ -26,7 +32,11 @@ export const useLotteryResult = (tickets: LotteryTicket[]) => {
     }
   }
 
-  const showWinningResult = ({ totalWinningCount, totalBonusWinningCount }) => {
+  const showWinningResult = ({
+    totalWinningCount,
+    totalBonusWinningCount,
+  }: NonNullableA<ReturnType<typeof getWinningResult>>) => {
+    /* totalWinningCount[일치하는 로또 넘버 개수] = 티켓 개수 */
     Swal.fire({
       title: '당첨 통계',
       html: `<div>
