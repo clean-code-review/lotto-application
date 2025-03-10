@@ -23,7 +23,7 @@ export function useWinningNumbersInput() {
       inputRefs.current[currentInputIdx + 1]?.focus()
     } else if (
       value > 0 &&
-      currentInputIdx === LotteryRules.NUMBERS_PER_TICKET
+      currentInputIdx === LotteryRules.NUMBERS_PER_TICKET - 1
     ) {
       bonusInputRef.current?.focus()
     }

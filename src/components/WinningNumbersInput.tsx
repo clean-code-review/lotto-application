@@ -28,25 +28,24 @@ export const WinningNumbersInput: React.FC<WinningNumbersInputProps> = ({
     <div className="winning-numbers-input">
       <Heading as={'h4'}>당첨 번호 입력</Heading>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div>
-          {/* 당첨 번호 입력 필드 */}
-          {winningNumbers.map((num, idx) => (
-            <Input
-              key={idx}
-              type="text"
-              style={{ width: '20px' }}
-              inputMode="numeric"
-              value={num === 0 ? '' : num.toString()}
-              onChange={(e) => onWinningNumberChange(e, idx)}
-              ref={(node: HTMLInputElement | null) => {
-                if (inputRefs?.current) {
-                  inputRefs.current[idx] = node
-                }
-              }}
-              aria-label={`당첨 번호 ${idx + 1}`}
-            />
-          ))}
-        </div>
+        {/* 당첨 번호 입력 필드 */}
+        {winningNumbers.map((num, inputIdx) => (
+          <Input
+            key={`winningNumberInput_${inputIdx.toString()}`}
+            type="text"
+            inputMode="numeric"
+            value={num === 0 ? '' : num.toString()}
+            onChange={(e) => onWinningNumberChange(e, inputIdx)}
+            ref={(node: HTMLInputElement | null) => {
+              if (inputRefs?.current) {
+                inputRefs.current[inputIdx] = node
+              }
+            }}
+            aria-label={`당첨 번호 ${inputIdx + 1}`}
+            style={{ width: '20px' }}
+          />
+        ))}
+
         {/* 보너스 번호 입력 필드 */}
         <Input
           value={bonusNumber === 0 ? '' : bonusNumber.toString()}
